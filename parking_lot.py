@@ -2,6 +2,7 @@ import random
 import time
 import sys
 
+parking_hours = []
 parkingSpotNumbers = random.sample(range(1,21),5)
 while(True):
     print("Welcome to Kia's Automatic Parking Lot!")
@@ -16,6 +17,7 @@ while(True):
                 print("For how long do you want to park? The maximum duration is 12 hours and the minimum is 0.5 hours.") 
                 hours_response = float(input())
                 if hours_response > 0.5 and hours_response < 12:
+                    parking_hours.append(hours_response)
                     min_parkingSpot = min(parkingSpotNumbers)
                     time.sleep(1)
                     print("Okay! You can park for", str(hours_response), "hours at parking spot #"+ str(min_parkingSpot))
@@ -27,7 +29,7 @@ while(True):
                     print("That is an invalid selection. Please try again!")
         else:
             print("Sorry, there are no parking spots available at the moment!") 
-            print("A spot will be available in hours, please come back then or reserve your spot now!")
+            print("A spot will be available in", str(min(parking_hours)), "hours, please come back then or reserve your spot now!")
             sys.exit()
     else:
         print("Okay! Thank you for coming!")
